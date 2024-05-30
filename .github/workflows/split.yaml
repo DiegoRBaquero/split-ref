@@ -13,8 +13,9 @@ jobs:
       - name: Split tag name
         id: split
         run: |
-          last=(${${GITHUB_REF_NAME##*/}//-build/})
-          echo "::set-output name=ref::$last"
+          last=${GITHUB_REF_NAME##*/}
+          cleaned=${$last//-build/}
+          echo "ref=$cleaned" >> "$GITHUB_OUTPUT"
       - name: Test variable
         run: |
           echo ${{ steps.split.outputs.ref }}
