@@ -14,7 +14,7 @@ jobs:
         id: split
         run: |
           last=${GITHUB_REF_NAME##*/}
-          cleaned=${$last//-build/}
+          cleaned=${last//-build/}
           echo "ref=$cleaned" >> "$GITHUB_OUTPUT"
       - name: Test variable
         run: |
